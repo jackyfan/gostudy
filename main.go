@@ -1,15 +1,20 @@
 package main
 
-/*
-#include <stdio.h>
-#include <stdlib.h>
+import "fmt"
 
-void say_hello() {
-        printf("Hello World!\n");
-}
+/*
+#include <stdlib.h>
 */
 import "C"
 
+func Random() int {
+	return int(C.random())
+}
+
+func Seed(i int) {
+	C.srandom(C.uint(i))
+}
 func main() {
-	C.say_hello()
+	Seed(100)
+	fmt.Println("Random:", Random())
 }
